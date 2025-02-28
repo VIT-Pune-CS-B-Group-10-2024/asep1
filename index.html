@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Space Radiation Simulation</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Space Radiation Simulation</h1>
+    <form id="simulation-form">
+      <label for="metal">Select Metal:</label>
+      <select id="metal" name="metal">
+        <option value="Al">Aluminium</option>
+        <option value="Ti">Titanium</option>
+        <option value="Fe">Iron</option>
+      </select>
+
+      <label for="property1">Select Property 1:</label>
+      <select id="property1" name="property1">
+        <option value="stopping_power">Stopping Power</option>
+        <option value="kinetic_energy">Kinetic Energy</option>
+        <option value="csda_range">CSDA Range</option>
+        <option value="radiation_yield">Radiation Yield</option>
+        <option value="density_effect">Density Effect Parameter</option>
+      </select>
+
+      <label for="property2">Select Property 2:</label>
+      <select id="property2" name="property2">
+        <option value="stopping_power">Stopping Power</option>
+        <option value="kinetic_energy">Kinetic Energy</option>
+        <option value="csda_range">CSDA Range</option>
+        <option value="radiation_yield">Radiation Yield</option>
+        <option value="density_effect">Density Effect Parameter</option>
+      </select>
+
+      <button type="submit">Start Simulation</button>
+    </form>
+
+    <div id="results">
+      <h2>Simulation Results</h2>
+      <p id="result-text"></p>
+      <div id="visualization"></div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
