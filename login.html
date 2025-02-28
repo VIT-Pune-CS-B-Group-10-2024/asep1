@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Space Radiation Simulation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000000;
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .login-container {
+            background: rgba(71, 71, 71, 0.9);
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0px 6px 50px rgba(146, 146, 146, 0.8);
+            text-align: center;
+            width: 500px;
+            color: white;
+        }
+        h2 {
+            color: #929292;
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+        input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            font-size: 18px;
+            background: rgba(146, 146, 146, 0.2);
+            color: white;
+            outline: none;
+        }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        button {
+            width: 100%;
+            padding: 16px;
+            background-color: #474747;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 22px;
+            transition: background 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #929292;
+            transform: scale(1.07);
+        }
+        .error-message {
+            color: red;
+            font-size: 1em;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Radiation Xplorer</h2>
+        <form id="login-form">
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p id="error-message" class="error-message"></p>
+    </div>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            const storedEmail = localStorage.getItem('userEmail');
+            const storedUsername = localStorage.getItem('username');
+            const storedPassword = localStorage.getItem('password');
+            
+            if (!storedEmail || !storedUsername || !storedPassword) {
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('username', username);
+                localStorage.setItem('password', password);
+                alert("Account created successfully!");
+            } else if (email !== storedEmail || username !== storedUsername || password !== storedPassword) {
+                document.getElementById('error-message').innerText = "Incorrect login details. Please try again.";
+            } else {
+                alert("Login successful!");
+                window.location.href = "dashboard.html";
+            }
+        });
+    </script>
+</body>
+</html>
